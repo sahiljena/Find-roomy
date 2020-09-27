@@ -25,7 +25,7 @@ db.create_all()
 
 @app.route('/',methods = ['POST','GET'])
 def otp_check():
-    if not session:
+    if session['s'] == 1:
         if request.method == "POST":
             opt = request.form['OTP']
             print(opt)
@@ -76,7 +76,7 @@ def sendotp():
 
 @app.route('/find',methods = ['POST','GET'])
 def find():
-    if session:
+    if session['s'] == 1:
         user = User.query.filter_by(ename = session['tname']).first()
         myhostel = ""
         fellow = []
