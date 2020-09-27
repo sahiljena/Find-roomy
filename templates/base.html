@@ -21,6 +21,9 @@
         .card-body{
           width: 100% !important;
         }
+        .material-icons{
+          transform: scale(1.4);
+        }
         
         th{
 background: #000;
@@ -38,6 +41,13 @@ table{
 }
 #links{
   margin: 0 auto;
+}
+#loader{
+  background: #000;
+  height: 100vh;
+}
+.cspin{
+  top: 40%;
 }
         @media only screen and (max-width: 600px) {
            .card{
@@ -57,7 +67,7 @@ table{
         </head>
   <body>
     <div id="loader">
-      <div class="text-center">
+      <div class="text-center cspin">
         <div class="spinner-border text-primary" role="status">
           <span class="sr-only">Loading...</span>
         </div>
@@ -66,7 +76,7 @@ table{
       {% block body %}{% endblock %}
       <!--extralinks-->
       <div id="links">
-        <a href="mailto:sahiljena46@gmail.com"><span class="material-icons">support_agent</span></a>
+        <center><a href="mailto:sahiljena46@gmail.com"><span class="material-icons">support_agent</span>Contact</a></center>
       </div>
       <!--extralinks-->
     <!-- Optional JavaScript -->
