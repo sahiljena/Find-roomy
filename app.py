@@ -25,7 +25,7 @@ db.create_all()
 
 @app.route('/',methods = ['POST','GET'])
 def otp_check():
-    if session['s'] == 1:
+    if session['s'] != 1:
         if request.method == "POST":
             opt = request.form['OTP']
             print(opt)
