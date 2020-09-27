@@ -41,7 +41,8 @@ table{
 }
 #links{
  float: left;
- margin-left: -10px;
+ margin-left: 10px;
+ margin-top: 10px;
 }
 #loader{
   background: #000;
@@ -49,6 +50,52 @@ table{
 }
 .cspin{
   top: 40%;
+}
+.loader {
+  border: 7px solid;
+  border-color: #87CEFA #00BFFF #00BFFF;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  animation: spin 2s linear infinite 0s;
+}
+
+#main-screen-nav{
+-webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+  padding: 10px;
+   position: fixed;
+  top: 0;
+  width: 100%;
+  background: #141E30;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#main-screen-nav a{
+  text-decoration: none;
+}
+#nav-btn{
+  border-radius: 4px;
+  color: #141E30;
+  padding: 4px;
+  background: #fff;
+  font-family: Do Hyeon;
+  float: left;
+}
+#nav-ic{
+  float: right;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
 }
         @media only screen and (max-width: 600px) {
            .card{
@@ -68,15 +115,13 @@ table{
         </head>
   <body>
     <div id="loader">
-      <div class="text-center">
-        <div class="spinner-border text-primary" role="status">
-          <span class="sr-only cspin">Loading...</span>
-        </div>
-      </div>
+      <div class="loader"></div>
     </div>
-    <div id="links">
-     <a href="mailto:sahiljena46@gmail.com"><span class="material-icons">support_agent</span>Contact</a>
+  <nav id="main-screen-nav">
+    <div id="nav-ic">
+     <a href="mailto:sahiljena46@gmail.com"><span class="material-icons">support_agent</span></a>
     </div>
+  </nav>
       {% block body %}{% endblock %}
       <!--extralinks-->
       <!--extralinks-->
