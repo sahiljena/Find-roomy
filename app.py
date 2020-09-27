@@ -59,11 +59,17 @@ def sendotp():
             'hash' : otp
                 } 
         # sending get request and saving the response as response object 
-        r = requests.get(url = URL, params = PARAMS) 
-        session['temp_otp'] = otp
-        session['s'] = 0
-        session['tname'] = mail
-        return jsonify(data)
+        r = requests.get(url = URL, params = PARAMS)
+        g = r.text
+        g = g.split()
+        if g[0] == '1': 
+            session['temp_otp'] = otp
+            session['s'] = 0
+            session['tname'] = mail
+            return jsonify(data)
+        else:
+            data = {"data":"Unexpected error occured while delivering OTP please try again later"}
+            return jsonify(data)
     else:
         data = {"data":"Please use mail id with the domain 'srmits.edu.in' only"}
         return jsonify(data)
