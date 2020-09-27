@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('GG')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 db = SQLAlchemy(app)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 class User(db.Model):
     __tablename__ = 'users'

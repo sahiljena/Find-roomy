@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-    {% block title%} Find Roomy!{% endblock%}
+    {% block title%} Find Roommates!{% endblock%}
     {% block body %}
     <div class="container">
         <div class="row">
@@ -7,8 +7,8 @@
           
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Find Romemates!</h5>
-                        <h6 class="card-subtitle mb-2 text-danger">Log your data and find your roomy!</h6>
+                        <h5 class="card-title">Find Roommates!</h5>
+                        <h6 class="card-subtitle mb-2 text-danger">Log your data and find your Roommates!</h6>
                         {% if myhostel %}
                         Hi ,{{ tname }} from {{ myhostel }}
                         {% else %}
@@ -45,7 +45,7 @@
                         <!--FindData-->
                         <p>
                             <button class="btn btn-outline-danger btn-block" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
-                             Find My Roomy
+                             Roommates
                             </button>
                             <div class="collapse multi-collapse" id="multiCollapseExample2">
                                 <div class="card-body">
@@ -70,7 +70,7 @@
                                     {% if not myhostel %}
                                         To view your Roomates please first add your own hostel data
                                     {% else %}
-                                    Seems like your romemates  haven't discovred this platform yet. 
+                                    Looks like your roommates  haven't discovred this platform yet. 
                                     {% endif %}
                                   {% endif %}
                                 </div>

@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <title>{% block title %}{% endblock%}</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,6 +36,9 @@ table{
   border: 2px solid grey;
   padding: 2px;
 }
+#links{
+  margin: 0 auto;
+}
         @media only screen and (max-width: 600px) {
            .card{
              width: 90% !important;
@@ -52,7 +56,19 @@ table{
         </style>
         </head>
   <body>
+    <div id="loader">
+      <div class="text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
       {% block body %}{% endblock %}
+      <!--extralinks-->
+      <div id="links">
+        <a href="mailto:sahiljena46@gmail.com"><span class="material-icons">support_agent</span></a>
+      </div>
+      <!--extralinks-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
