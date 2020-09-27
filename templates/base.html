@@ -40,7 +40,8 @@ table{
   padding: 2px;
 }
 #links{
-  margin: 0 auto;
+ float: left;
+ margin-left: -10px;
 }
 #loader{
   background: #000;
@@ -67,17 +68,17 @@ table{
         </head>
   <body>
     <div id="loader">
-      <div class="text-center cspin">
+      <div class="text-center">
         <div class="spinner-border text-primary" role="status">
-          <span class="sr-only">Loading...</span>
+          <span class="sr-only cspin">Loading...</span>
         </div>
       </div>
     </div>
+    <div id="links">
+     <a href="mailto:sahiljena46@gmail.com"><span class="material-icons">support_agent</span>Contact</a>
+    </div>
       {% block body %}{% endblock %}
       <!--extralinks-->
-      <div id="links">
-        <center><a href="mailto:sahiljena46@gmail.com"><span class="material-icons">support_agent</span>Contact</a></center>
-      </div>
       <!--extralinks-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
