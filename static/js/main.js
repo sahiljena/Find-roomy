@@ -10,7 +10,7 @@ function send() {
       var url = url+tname;
       fetch(url).then(res => res.json()).then(data => {
         if(data.data === "Please use mail id with the domain 'srmist.edu.in' only" || data.data === "Unexpected error occured while delivering OTP please try again later"){
-            check.innerHTML = "<br><h6 style='color: red;'> *"+ data.data +"</64>"
+            check.innerHTML = `<br><h6 style='color: red;'> *${data.data}</h6>`
             x.innerHTML = 'Send OTP';
             x.disabled = false;
         }else{
