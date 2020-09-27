@@ -8,8 +8,8 @@ URL = "https://qboxlink.000webhostapp.com/confirm.php"
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'GG'
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://kmbpooiswbzkob:6223dc823cb0d09e086da5f434e8f123184345f8447fc4a933a0f3665b2eef19@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d77rlrfbi4vsp3" #os.environ.get('DATABASE_URL')
+app.config['SECRET_KEY'] = os.environ.get('GG')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 db = SQLAlchemy(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -69,6 +69,7 @@ def sendotp():
             print("###")
             session['tname'] = mail
             session['s'] = 0
+            data = {'data':'sent'}
             return jsonify(data)
         else:
             data = {"data":"Unexpected error occured while delivering OTP please try again later"}
