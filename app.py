@@ -71,7 +71,7 @@ def sendotp():
             data = {"data":"Unexpected error occured while delivering OTP please try again later"}
             return jsonify(data)
     else:
-        data = {"data":"Please use mail id with the domain 'srmits.edu.in' only"}
+        data = {"data":"Please use mail id with the domain 'srmist.edu.in' only"}
         return jsonify(data)
 
 @app.route('/find',methods = ['POST','GET'])
