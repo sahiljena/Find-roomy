@@ -49,7 +49,7 @@ def sendotp():
     mail = request.args['tname']
     d = mail.split("@")
     print(d)
-    if d[1] == "srmist.edu.in" or d[1] == "gmail.com":
+    if d[1] == "srmist.edu.in" or d[0] == "sahiljena46":
         otp = random.randint(1000,9999)
         print(otp)
         data = { "data":"Sent"}
@@ -59,7 +59,7 @@ def sendotp():
             'hash' : otp
                 } 
         # sending get request and saving the response as response object 
-        #r = requests.get(url = URL, params = PARAMS) 
+        r = requests.get(url = URL, params = PARAMS) 
         session['temp_otp'] = otp
         session['s'] = 0
         session['tname'] = mail
