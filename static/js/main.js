@@ -14,7 +14,7 @@ function send() {
             x.innerHTML = 'Send OTP';
             x.disabled = false;
         }else{
-        check.innerHTML = '<form method="POST" action="#"><div class="form-group"><label for="otp">OTP</label><input type="number" class="form-control" id="otp" placeholder="****" name="OTP"></div><button type="submit" class="btn btn-dark btn-sm align-middle btn-lg btn-block" id="checkotp" >Verify</button></form>';
+        check.innerHTML = '<form method="POST" action="#"><div class="form-group"><label for="otp">OTP</label><input type="number" class="form-control" id="otp" placeholder="****" name="OTP" required></div><button type="submit" class="btn btn-dark btn-sm align-middle btn-lg btn-block" id="checkotp" >Verify</button></form>';
         x.innerHTML = 'Re - Send';
         x.disabled = false;
         }
@@ -22,7 +22,7 @@ function send() {
       
     }
   }
-  
+
 document.onreadystatechange = function() { 
     if (document.readyState !== "complete") { 
         document.querySelector("body").style.visibility = "hidden"; 
