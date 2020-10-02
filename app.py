@@ -83,7 +83,7 @@ def sendotp():
             return jsonify(data)
         '''
         message = MIMEMultipart("alternative")
-        message["Subject"] = "multipart test"
+        message["Subject"] = "OTP : Find-Roomy"
         message["From"] = sender_email
         message["To"] = receiver_email
         html = ("""\
