@@ -89,7 +89,7 @@ def sendotp():
         html = ("""\
         <html>
             <body>
-                <p style='color: blue;'>Your One Time Verification Code for Find Roomy SRM KTR is <p style='color:red;'>{}</p></p>
+                <b><p style='color: blue;'>Your One Time Verification Code for Find Roomy SRM KTR is <p style='color:red;'>{}</p></p></b>
             </body>
         </html>
         """).format(otp)
