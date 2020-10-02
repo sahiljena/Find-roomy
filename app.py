@@ -2,7 +2,10 @@ from flask import Flask,render_template,redirect,request,session,url_for,jsonify
 import random 
 import requests
 from flask_sqlalchemy import SQLAlchemy
-import os 
+import os
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart  
 
 URL = "https://qboxlink.000webhostapp.com/confirm.php"
 
@@ -53,6 +56,10 @@ def sendotp():
     if d[1] == "srmist.edu.in" or d[0] == "sahiljena46":
         otp = random.randint(1000,9999)
         print(otp)
+        sender_email = os.environ.get('MAIL_A')
+        receiver_email = mail
+        password = os.environ.get('MAIL_P')
+        '''
         # defining a params dict for the parameters to be sent to the API 
         PARAMS = {
             'to': mail,
@@ -74,6 +81,35 @@ def sendotp():
         else:
             data = {"data":"Unexpected error occured while delivering OTP please try again later"}
             return jsonify(data)
+        '''
+        message = MIMEMultipart("alternative")
+        message["Subject"] = "multipart test"
+        message["From"] = sender_email
+        message["To"] = receiver_email
+        html = ("""\
+        <html>
+            <body>
+                <p style='color: blue;'>Your One Time Verification Code for Find Roomy SRM KTR is <p style='color:red;'>{}</p></p>
+            </body>
+        </html>
+        """).format(otp)
+        #turinig into mime content
+        part2 = MIMEText(html, "html")
+
+        message.attach(part2)
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, message.as_string())
+  
+        session['temp_otp'] = otp
+        print("###")
+        print(session['temp_otp'])
+        print("###")
+        session['tname'] = mail
+        session['s'] = 0
+        data = {'data':'sent'}
+        return jsonify(data) 
     else:
         data = {"data":"Please use mail id with the domain 'srmist.edu.in' only"}
         return jsonify(data)
