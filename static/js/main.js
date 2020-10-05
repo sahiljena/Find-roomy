@@ -31,4 +31,5 @@ document.onreadystatechange = function() {
         document.querySelector("#loader").style.display = "none"; 
         document.querySelector("body").style.visibility = "visible"; 
     } 
-}; 
+};
+bootbox.alert("<h5 style='padding: 10px;'>To reduce spams you can add your hostel data <b>only once!</b><br> So be carefull you <b style='color: #ff005d;'>dumbass!</h5><br><img class='lazy' width='100' src='https://avatars3.githubusercontent.com/u/36576810?s=280&v=4'>"); 
