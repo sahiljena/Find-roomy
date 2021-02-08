@@ -194,12 +194,3 @@ def find():
     except:
         return redirect('/')
 
-@app.route('/get-prefrence-state',methods = ['POST'])
-def get-prefrence-state():
-    try:
-        if session['s'] == 1:
-            if request.method == 'POST':
-                state = request.form['state']
-
-    except:
-        return redirect('/')
