@@ -4,6 +4,7 @@ import requests
 from flask_sqlalchemy import SQLAlchemy
 import socket
 import json 
+import os
 
 URL = "https://qboxlink.000webhostapp.com/confirm.php"
 
