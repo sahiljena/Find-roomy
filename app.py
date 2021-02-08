@@ -71,10 +71,10 @@ def sendotp():
                 "name": str(mailto.split('@')[0]),
                 "otp": str(otp),
                 "ip":str(ip)
-            },
-            "subject": "OTP - Find-Roomy"
+            }
             }
         ],
+        "subject": "OTP - Find-Roomy",
         "from": {
             "email": "find.roomy.otp@gmail.com",
             "name": "OTP-BOT"
