@@ -19,7 +19,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 limiter = Limiter(
     app,
     key_func=get_remote_address,
-    default_limits=["200 per day", "50 per hour"]
+    default_limits=["2 per minute", "1 per second"]
 )
 
 class User(db.Model):
@@ -55,7 +55,7 @@ def otp_check():
 
 
 @app.route('/sendotp',methods = ['POST','GET'])
-@limiter.limit("40 per day")
+@limiter.limit("1 per day")
 def sendotp():
     hostname = socket.gethostname()
     ip = socket.gethostbyname(hostname)
