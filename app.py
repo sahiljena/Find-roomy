@@ -55,7 +55,7 @@ def otp_check():
 
 
 @app.route('/sendotp',methods = ['POST','GET'])
-@limiter.limit("1 per day")
+@limiter.limit("20 per day")
 def sendotp():
     hostname = socket.gethostname()
     ip = socket.gethostbyname(hostname)
