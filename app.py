@@ -9,8 +9,8 @@ URL = "https://qboxlink.000webhostapp.com/confirm.php"
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] ='sahiljena' #os.environ.get('GG')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kmbpooiswbzkob:6223dc823cb0d09e086da5f434e8f123184345f8447fc4a933a0f3665b2eef19@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d77rlrfbi4vsp3' #os.environ.get('DATABASE_URL')
+app.config['SECRET_KEY'] =os.environ.get('GG')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 db = SQLAlchemy(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -88,59 +88,12 @@ def sendotp():
         payload = json.dumps(payload)
         print(payload)
         headers = {
-            'authorization': "Bearer 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",
+            'authorization': "Bearer "+str(os.environ.get('SEND_GRID_KEY')),
             'content-type': "application/json"
             }
 
         response = requests.request("POST", url, data=payload, headers=headers)
         print(otp)
-        #sender_email ='find.roomy.otp@gmail.com' #os.environ.get('MAIL_A')
-        #receiver_email = mail
-        '''
-        password = '' #os.environ.get('MAIL_P')
-
-        # defining a params dict for the parameters to be sent to the API 
-        PARAMS = {
-            'to': mail,
-            'hash' : otp
-                } 
-        # sending get request and saving the response as response object 
-        r = requests.get(url = URL, params = PARAMS)
-        g = r.text
-        g = g.split()
-        if g[0] == '1': 
-            session['temp_otp'] = otp
-            print("###")
-            print(session['temp_otp'])
-            print("###")
-            session['tname'] = mail
-            session['s'] = 0
-            data = {'data':'sent'}
-            return jsonify(data)
-        else:
-            data = {"data":"Unexpected error occured while delivering OTP please try again later"}
-            return jsonify(data)
-
-        message = MIMEMultipart("alternative")
-        message["Subject"] = "OTP : Find-Roomy"
-        message["From"] = sender_email
-        message["To"] = receiver_email
-        html = ("""\
-        <html>
-            <body>
-                <b><p style='color: blue;'>Your One Time Verification Code for Find Roomy SRM KTR is <p style='color:red;'>{}</p></p></b>
-            </body>
-        </html>
-        """).format(otp)
-        #turinig into mime content
-        part2 = MIMEText(html, "html")
-
-        message.attach(part2)
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-            server.login(sender_email, password)
-            server.sendmail(sender_email, receiver_email, message.as_string())
-        '''
         session['temp_otp'] = otp
         print("###")
         print(session['temp_otp'])
