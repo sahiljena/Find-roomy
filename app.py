@@ -2,17 +2,15 @@ from flask import Flask,render_template,redirect,request,session,url_for,jsonify
 import random 
 import requests
 from flask_sqlalchemy import SQLAlchemy
-import os
-import smtplib, ssl
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart  
+import socket
+import json 
 
 URL = "https://qboxlink.000webhostapp.com/confirm.php"
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('GG')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SECRET_KEY'] ='sahiljena' #os.environ.get('GG')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kmbpooiswbzkob:6223dc823cb0d09e086da5f434e8f123184345f8447fc4a933a0f3665b2eef19@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d77rlrfbi4vsp3' #os.environ.get('DATABASE_URL')
 db = SQLAlchemy(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -22,6 +20,7 @@ class User(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     ename = db.Column(db.String(200),unique = True)
     hostel = db.Column(db.String(200),unique = False)
+    pref_state = db.column(db.String(200))
 
 db.create_all()
 
@@ -49,17 +48,57 @@ def otp_check():
 
 @app.route('/sendotp',methods = ['POST','GET'])
 def sendotp():
+    hostname = socket.gethostname()
+    ip = socket.gethostbyname(hostname)
     data ={ "data":"###"}
     mail = request.args['tname']
     d = mail.split("@")
     print(d)
     if d[1] == "srmist.edu.in" or d[0] == "sahiljena46":
         otp = random.randint(1000,9999)
+        mailto = mail
+        url = "https://api.sendgrid.com/v3/mail/send"
+        payload = {
+        "personalizations": [
+            {
+            "to": [
+                {
+                "email": mailto,
+                "name": mailto
+                }
+            ],
+            "dynamic_template_data": {
+                "name": str(mailto.split('@')[0]),
+                "otp": str(otp),
+                "ip":str(ip)
+            },
+            "subject": "OTP - Find-Roomy"
+            }
+        ],
+        "from": {
+            "email": "find.roomy.otp@gmail.com",
+            "name": "OTP-BOT"
+        },
+        "reply_to": {
+            "email": "sahiljena46@gmail.com",
+            "name": "sahil"
+        },
+        "template_id": "d-4de14fe2fc12492096e987bce85cbaaa"
+        }
+        payload = json.dumps(payload)
+        print(payload)
+        headers = {
+            'authorization': "Bearer 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",
+            'content-type': "application/json"
+            }
+
+        response = requests.request("POST", url, data=payload, headers=headers)
         print(otp)
-        sender_email = os.environ.get('MAIL_A')
-        receiver_email = mail
-        password = os.environ.get('MAIL_P')
+        #sender_email ='find.roomy.otp@gmail.com' #os.environ.get('MAIL_A')
+        #receiver_email = mail
         '''
+        password = '' #os.environ.get('MAIL_P')
+
         # defining a params dict for the parameters to be sent to the API 
         PARAMS = {
             'to': mail,
@@ -81,7 +120,7 @@ def sendotp():
         else:
             data = {"data":"Unexpected error occured while delivering OTP please try again later"}
             return jsonify(data)
-        '''
+
         message = MIMEMultipart("alternative")
         message["Subject"] = "OTP : Find-Roomy"
         message["From"] = sender_email
@@ -101,7 +140,7 @@ def sendotp():
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, message.as_string())
-  
+        '''
         session['temp_otp'] = otp
         print("###")
         print(session['temp_otp'])
@@ -155,3 +194,12 @@ def find():
     except:
         return redirect('/')
 
+@app.route('/get-prefrence-state',methods = ['POST'])
+def get-prefrence-state():
+    try:
+        if session['s'] == 1:
+            if request.method == 'POST':
+                state = request.form['state']
+
+    except:
+        return redirect('/')
