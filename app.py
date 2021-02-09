@@ -83,7 +83,6 @@ def sendotp():
             }
             }
         ],
-        "subject": "OTP - Find-Roomy",
         "from": {
             "email": "find.roomy.otp@gmail.com",
             "name": "OTP-BOT"
@@ -92,6 +91,7 @@ def sendotp():
             "email": "sahiljena46@gmail.com",
             "name": "sahil"
         },
+        "subject": "OTP - Find-Roomy",
         "template_id": "d-4de14fe2fc12492096e987bce85cbaaa"
         }
         payload = json.dumps(payload)
